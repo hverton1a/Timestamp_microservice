@@ -75,7 +75,7 @@ function TimeStamp(date){
 
 function TimeStamp_Json(date){
   if ((get_unix(date))&&(get_utc(date))){
-    return `{ unix: ${get_unix(date).toString()}, utc: "${get_utc(date)}" }`;
+    return { unix: Number(get_unix(date)), utc: get_utc(date).toString() };
   }
   return {"message":"something went wrong, please, try again later"};
 }
