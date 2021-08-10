@@ -1,20 +1,20 @@
 {
-	"name": "fcc-api-projects-boilerplate",
-	"version": "0.0.1",
+	"name": "api-microservice-timestamp",
+	"version": "1.0.0",
 	"description": "An FCC Backend Challenge",
 	"main": "server.js",
+	"author":"Heverton Vieira Horvat Barbosa",
 	"scripts": {
 		"start": "node server.js"
 	},
 	"dependencies": {
-		"@material-ui/icons": "^4.11.2",
 		"cors": "^2.8.0",
 		"express": "^4.17.1",
 		"express-rate-limit": "^5.3.0"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://githost.com/camper/repo.git"
+		"url": "https://github.com/hverton1a/Timestamp_microservice.git"
 	},
 	"keywords": [
 		"node",
