@@ -74,14 +74,34 @@ function TimeStamp(date){
 }
 
 function TimeStamp_Json(date){
-  if (date=='now'){
-    return { unix: Date.now(), utc: Date().toString() };
-  }
   if ((get_unix(date))&&(get_utc(date))){
     return { unix: Number(get_unix(date)), utc: get_utc(date).toString() };
   }
   return {"message":"something went wrong, please, try again later"};
 }
+var mili="1451001600000";
+var utc="2015-12-25";
+var date = new Date(get_utc(mili));
+
+console.log(date);
+console.log(TimeStamp_Json(mili));
+console.log(TimeStamp_Json(utc));
+
+var djson=TimeStamp_Json(mili);
+console.log('mili json unix:'+ djson.unix);
+console.log('mili json utc:'+ djson.utc);
+console.log('new date mili json unix:'+ new Date(djson.unix));
+console.log('new date mili json utc:'+ new Date(djson.utc));
+
+djson=TimeStamp_Json(utc);
+console.log('utc json unix:'+ djson.unix);
+console.log('utc json utc:'+ djson.utc);
+console.log('new date mili json unix:'+ new Date(djson.unix));
+console.log('new date mili json utc:'+ new Date(djson.utc));
+
+var date = new Date(get_unix(utc));
+
+console.log(date);
 
 module.exports = { TimeStamp, TimeStamp_Json, input_format_check};
 

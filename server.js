@@ -44,18 +44,31 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-// your first API endpoint... 
-app.get("/api/:data", function (req, res) {
+
+app.get("/api/", function (req, res) {
   Log(req);
+    console.log('aqui');
+    res.status(200).json(TS.TimeStamp_Json("now")).end();
+    return;
+  });
+
+// your first API endpoint... 
+app.get(["/api/:data","/api/"], function (req, res) {
+  Log(req);
+/*   if(!req.params){
+    console.log('aqui');
+    res.status(200).json(TS.TimeStamp_Json("now"));
+    return;
+  } */
   if(TS.input_format_check(req.params.data)){
     res.status(200).json(TS.TimeStamp_Json(req.params.data));
     return;
   } else if (!(TS.input_format_check(req.params.data))){
     res.statusMessage = 'Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000';
-    res.status(400).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000');
+    res.status(400).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000').json({ error: "Invalid Date" }).end();
     return;
   }else{
-    res.status(404).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000');
+    res.status(404).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000').json({ error: "Invalid Date" });
   }
   return;
   //res.json(TS.TimeStamp_Json(req.params.data));
