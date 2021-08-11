@@ -65,10 +65,10 @@ app.get(["/api/:data","/api/"], function (req, res) {
     return;
   } else if (!(TS.input_format_check(req.params.data))){
     res.statusMessage = 'Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000';
-    res.status(400).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000').json({ error: "Invalid Date" }).end();
+    res.status(400).json({ error: "Invalid Date" }).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000').end();
     return;
   }else{
-    res.status(404).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000').json({ error: "Invalid Date" });
+    res.status(404).json({ error: "Invalid Date" }).send('Bad Request,please check the format of the date string.Should be string YYYY-MM-DD or any decimal number amount of milliseconds! Ex. utc 2015-12-25 unix 1451001600000').json({ error: "Invalid Date" });
   }
   return;
   //res.json(TS.TimeStamp_Json(req.params.data));
