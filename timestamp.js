@@ -1,16 +1,15 @@
 
+const regexUTC=/^(([1-2][0-9]|3[0-1]|0*[1-9])(\s|\-|\/)([0]*[0-9]|1[1-2])(\s|\-|\/)[0-9]{4,})|^(([1-2][0-9]|3[0-1]|0*[1-9])(\s|\-|\/)([1-2][0-9]|3[0-1]|0*[1-9])(\s|\-|\/)[0-9]{4,})|((^([1-2][0-9]|3[0-1]|0*[1-9])\s[Jan|Feb|Mar|Apr|May|Jun|jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|july|August|September|October|November|December]+\s[0-9]{4,})|^())/gmi;
+const regexTS = '^[0-9]+$';
+
 function input_format_check(date){
-  const regexUTC = ('[0-9]{4,}-[0-9]{2,}-[0-9]{2,}$');
-  const regexTS = ('^[0-9]+$');
   if (date){
-    return date.match(regexUTC) ? 'utc':date.match(regexTS)?'unix':false;
+    return date.match(regexTS) ? 'unix':date.match(regexUTC)?'utc':false;
   }
   return false;
 }
 
 function validate_format(date){
-  const regexUTC = ('[0-9]{4,}-[0-9]{2,}-[0-9]{2,}');
-  const regexTS = ('[0-9]+');
   if (!(date)||!(date.match(regexUTC)) && !(date.match(regexTS)))
   {
     return false;
@@ -54,7 +53,6 @@ function get_unix(date){
 }
 
 function get_utc(date){
-  //console.log(date);
   if (is_input_unix(date)){
     return to_UTC(validate_format(date));
   }else if (is_input_utc(date)){
@@ -64,7 +62,6 @@ function get_utc(date){
 }
 
 function TimeStamp(date){
-
   if (is_input_unix(date)){
     return to_UTC(to_Unix(validate_format(date)));
   }else if (is_input_utc(date)){
@@ -80,9 +77,9 @@ function TimeStamp_Json(date){
   if ((get_unix(date))&&(get_utc(date))){
     return { unix: Number(get_unix(date)), utc: get_utc(date).toString() };
   }
-  return {"message":"something went wrong, please, try again later"};
+  return { error: "Invalid Date" };
 }
 
-module.exports = { TimeStamp, TimeStamp_Json, input_format_check};
+module.exports = { TimeStamp, TimeStamp_Json, input_format_check, get_utc, get_unix,validate_format };
 
 
