@@ -23,6 +23,8 @@ The user send a url request <appurl>/api/:data on any valid js date-string and r
     <code> {  "unix": 401068800000,  "utc": "Fri, 17 Sep 1982 00:00:00 GMT"      }</code>
     <p></p>
         <p></p>
+    <p>Used NodeJs Express Express-limiter and Cors</p>
+    <p></p>
         <br/>
         <p></p>
     <p>Check it out live on <a href="https://microservice-api-project.herokuapp.com" target="_blank">heroku<a> alternatively check on <a href='https://replit.com/@Horvatbarbosa/Timestampmicroservice' target="_blank" >Replit<a/> click  Run to start the <a href='https://Timestampmicroservice.horvatbarbosa.repl.co' target="_blank" >app<a/> </p>
